@@ -84,7 +84,7 @@ Player.prototype.update = function(){
     }
     this.ctlKey = null;
 
-    //If on water, reset
+    //Reset the Game when on Water
     if(this.y < 25){
         this.reset();
     }
