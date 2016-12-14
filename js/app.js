@@ -1,36 +1,111 @@
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+// Draw Enemies and the Player onto the screen, required method for game
+Object.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Reset method to bring Player to Start Position upon
+// colliding with enemies or getting to the water
+Object.prototype.reset = function() {
+    player.x = 200;
+    player.y = 400;
+};
+
+
+// Enemy Class
+var Enemy = function(x,y,movement,direction) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    // Enemies Location and Speed on the screen
+    this.x = x;
+    this.y = y;
+    //Enemy movement across the screen
+    this.movement = 100 + Math.floor(Math.random() * 150);
+    this.direction = -1;
+};
+
+// Enemy position and direction -
+Enemy.prototype.move = function (dt) {
+    if (this.direction === "left") {
+        this.x = this.x - (dt * this.movement);
+    } else if (this.direction === "right") {
+        this.x = this.x + (dt * this.movement);
+    }
 };
 
 // Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Parameter: dt, a time delta between ticks - will
+// ensure the game runs at the same speed for
+// all computers.
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+
+    this.x = this.x + (this.movement * dt * this.direction);
+    this.checkCollision(player);
+
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+Enemy.prototype.checkCollision = function(player) {
+    if (player.x < this.x + 75 &&
+        player.x + 65 > this.x &&
+        player.y < this.y + 50 &&
+        70 + player.y > this.y) {
+        player.reset();
+    }
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
 
+// The Player class
+var Player = function () {
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+    this.sprite = 'images/char-pink-girl.png';
 
+    //Location
+    this.x = 200;
+    this.y = 400;
 
+};
+
+//Update Player position according to Keys Pressed
+Player.prototype.update = function(){
+        //if left key is pressed and player is not on edge of map, pressed decrement x
+    if(this.ctlKey === 'left' && this.x > 0){
+        this.x = this.x - 50;
+        //if right key is pressed and player is not on edge of map increment x
+    }else if(this.ctlKey === 'right' && this.x != 400){
+        this.x = this.x + 50;
+        //if up key is pressed increment y
+    }else if(this.ctlKey === 'up'){
+        this.y = this.y - 50;
+        //if down key is pressed and player is not on edge of map decrement y
+    }else if (this.ctlKey === 'down' && this.y != 400){
+        this.y = this.y + 50;
+    }
+    this.ctlKey = null;
+
+    //If on water, reset
+    if(this.y < 25){
+        this.reset();
+    }
+};
+
+//handleInput() method for the Player
+Player.prototype.handleInput = function(e){
+    this.ctlKey = e;
+};
+
+// Instantiate all objects.
+// All enemy objects in an array called allEnemies
+var allEnemies = [];
+for (var i = 0; i < 3; i++){
+    allEnemies.push(new Enemy(-2, 60));
+    allEnemies.push(new Enemy(-2, 100));
+    allEnemies.push(new Enemy(-2, 150));
+}
+
+// Player object in a variable called player
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
