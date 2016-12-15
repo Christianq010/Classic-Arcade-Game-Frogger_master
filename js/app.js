@@ -23,7 +23,7 @@ var Enemy = function(x,y,movement,direction) {
     this.y = y;
     //Enemy movement across the screen
     this.movement = 100 + Math.floor(Math.random() * 150);
-    this.direction = -1;
+    this.direction = 1;
 };
 
 // Enemy position and direction -
@@ -69,16 +69,16 @@ var Player = function () {
 
 //Update Player position according to Keys Pressed
 Player.prototype.update = function(){
-        //if left key is pressed and player is not on edge of map, pressed decrement x
+        //Left Arrow key
     if(this.ctlKey === 'left' && this.x > 0){
         this.x = this.x - 50;
-        //if right key is pressed and player is not on edge of map increment x
+        //Right Arrow key
     }else if(this.ctlKey === 'right' && this.x != 400){
         this.x = this.x + 50;
-        //if up key is pressed increment y
+        //Up Arrow key
     }else if(this.ctlKey === 'up'){
         this.y = this.y - 50;
-        //if down key is pressed and player is not on edge of map decrement y
+        //Down Arrow key
     }else if (this.ctlKey === 'down' && this.y != 400){
         this.y = this.y + 50;
     }
