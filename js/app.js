@@ -1,3 +1,8 @@
+// Calling the global .render, .reset methods and Player.prototype.update method this way
+// were inspired by danceoval's code (source- https://github.com/danceoval/frogger)
+// A lot of code was inspired by various solutions available on the Udacity Forum
+
+
 // Draw Enemies and the Player onto the screen, required method for game
 Object.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
