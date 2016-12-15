@@ -8,7 +8,7 @@ Project [Rubric](https://review.udacity.com/#!/projects/2696458597/rubric)
 ##**For detailed instructions on how to get started**
 1. Play the game here - https://christianq010.github.io/Classic-Arcade-Game-Frogger_master 
 2. Use the Arrow keys (Up, Down, Left Right) to move the player respectively.
-3. Take the Player across to the water to win.
+3. Take the Player across to the water avoiding the Enemy bugs in-between.
 
 *Game to be expanded upon soon*
 
