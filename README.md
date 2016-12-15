@@ -17,4 +17,11 @@ Project [Rubric](https://review.udacity.com/#!/projects/2696458597/rubric)
 * https://codepen.io/rachsmith/post/hack-physics-and-javascript-1
 * http://blog.sklambert.com/html5-game-tutorial-game-ui-canvas-vs-dom/
 
+### Sources
+Various Aspects of programming Object Oriented Javascript in this project were inspired by
+* danceoval (https://github.com/danceoval/frogger)
+* AmitP88 (https://github.com/AmitP88/Arcade-Game) 
+* The Udacity Forum.
+
+
 

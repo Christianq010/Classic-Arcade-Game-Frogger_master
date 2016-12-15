@@ -1,6 +1,7 @@
 // Calling the global .render, .reset methods and Player.prototype.update method this way
-// were inspired by danceoval's code (source- https://github.com/danceoval/frogger)
-// A lot of code was inspired by various solutions available on the Udacity Forum
+// was inspired by danceoval's code (https://github.com/danceoval/frogger)
+// Various aspects  of the Player class inspired by AmitP88 (https://github.com/AmitP88/Arcade-Game)
+// A lot of code was inspired by various solutions available on the Udacity Forum as well.
 
 
 // Draw Enemies and the Player onto the screen, required method for game
