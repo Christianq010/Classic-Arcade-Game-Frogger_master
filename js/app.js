@@ -35,7 +35,7 @@ Enemy.prototype.move = function (dt) {
     }
 };
 
-// Update the enemy's position, required method for game
+// Update the enemy's position and loop when it goes off the canvas, required method for game
 // Parameter: dt, a time delta between ticks - will
 // ensure the game runs at the same speed for
 // all computers.
@@ -43,6 +43,9 @@ Enemy.prototype.update = function(dt) {
 
     this.x = this.x + (this.movement * dt * this.direction);
     this.checkCollision(player);
+    if (this.x > 1500) {
+        this.x = -200;
+    }
 
 };
 
@@ -97,11 +100,18 @@ Player.prototype.handleInput = function(e){
 
 // Instantiate all objects.
 // All enemy objects in an array called allEnemies
+// setTimeout acts a delay for Enemy Re-spawning
 var allEnemies = [];
 for (var i = 0; i < 3; i++){
-    allEnemies.push(new Enemy(-2, 60));
-    allEnemies.push(new Enemy(-2, 100));
-    allEnemies.push(new Enemy(-2, 150));
+    setTimeout(function(){
+        allEnemies.push(new Enemy(-200, 60));
+    }, 500);
+    setTimeout(function() {
+        allEnemies.push(new Enemy(-250, 150));
+    }, 1500);
+    setTimeout(function() {
+        allEnemies.push(new Enemy(-300, 230));
+    }, 2500);
 }
 
 // Player object in a variable called player
